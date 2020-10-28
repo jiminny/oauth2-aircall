@@ -18,7 +18,7 @@ class Aircall extends AbstractProvider
      *
      * @var string
      */
-    protected $host = 'https://dashboard-v2.aircall.io';
+    protected $host = 'https://api.aircall.io/v1';
 
 
     /**
@@ -28,7 +28,7 @@ class Aircall extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return $this->getHost() . '/oauth/authorize';
+        return 'https://dashboard-v2.aircall.io/oauth/authorize';
     }
 
     /**
@@ -38,7 +38,7 @@ class Aircall extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return $this->getHost() . '/oauth/token';
+        return 'https://api.aircall.io/v1/oauth/token';
     }
 
     /**
