@@ -18,7 +18,7 @@
         "aircall"
     ],
     "require": {
-        "league/oauth2-client": "2.4.1",
+        "league/oauth2-client": "2.5.0",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
