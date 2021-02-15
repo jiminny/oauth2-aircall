@@ -50,7 +50,7 @@ class Aircall extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://api.aircall.io/v1/users/'.$token->getResourceOwnerId();
+        return 'https://api.aircall.io/v1/integrations/me/';
     }
 
     /**

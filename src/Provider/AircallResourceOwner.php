@@ -33,7 +33,7 @@ class AircallResourceOwner implements ResourceOwnerInterface
      */
     public function getId()
     {
-        return $this->getValueByKey($this->response, 'data.id');
+        return $this->getValueByKey($this->response, 'integration.user.id');
     }
 
     /**
@@ -43,7 +43,7 @@ class AircallResourceOwner implements ResourceOwnerInterface
      */
     public function getName()
     {
-        return $this->getValueByKey($this->response, 'data.name');
+        return $this->getValueByKey($this->response, 'integration.user.name');
     }
 
     /**
@@ -53,7 +53,7 @@ class AircallResourceOwner implements ResourceOwnerInterface
      */
     public function getEmail()
     {
-        return $this->getValueByKey($this->response, 'data.email');
+        return $this->getValueByKey($this->response, 'integration.user.email');
     }
 
     /**
