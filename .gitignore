@@ -1,3 +1,8 @@
-### Ignore composer related files
+# Ignore composer related files
 /vendor/
-
+# Remove IDE/OS related files
+/.idea
+/.vscode
+.env
+.DS_Store
+.phpstorm.meta.php
