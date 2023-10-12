@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jiminny\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
@@ -15,18 +17,16 @@ class Aircall extends AbstractProvider
         BearerAuthorizationTrait;
 
     /**
-     *
      * @var string
      */
-    protected $host = 'https://api.aircall.io/v1';
-
+    protected string $host = 'https://api.aircall.io/v1';
 
     /**
      * Get authorization url to begin OAuth flow
      *
      * @return string
      */
-    public function getBaseAuthorizationUrl()
+    public function getBaseAuthorizationUrl(): string
     {
         return 'https://dashboard-v2.aircall.io/oauth/authorize';
     }
@@ -34,9 +34,10 @@ class Aircall extends AbstractProvider
     /**
      * Get access token url to retrieve token
      *
+     * @param array $params
      * @return string
      */
-    public function getBaseAccessTokenUrl(array $params)
+    public function getBaseAccessTokenUrl(array $params): string
     {
         return 'https://api.aircall.io/v1/oauth/token';
     }
@@ -44,11 +45,10 @@ class Aircall extends AbstractProvider
     /**
      * Get provider url to fetch user details
      *
-     * @param  AccessToken $token
-     *
+     * @param AccessToken $token
      * @return string
      */
-    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
         return 'https://api.aircall.io/v1/integrations/me';
     }
@@ -61,7 +61,7 @@ class Aircall extends AbstractProvider
      *
      * @return array
      */
-    protected function getDefaultScopes()
+    protected function getDefaultScopes(): array
     {
         return [];
     }
@@ -71,7 +71,7 @@ class Aircall extends AbstractProvider
      *
      * @return string
      */
-    public function getHost()
+    public function getHost(): string
     {
         return rtrim($this->host, '/');
     }
@@ -80,9 +80,11 @@ class Aircall extends AbstractProvider
      * Returns the string that should be used to separate scopes when building
      * the URL for requesting an access token.
      *
-     * @return string Scope separator, defaults to ' '
+     * Scope separator, defaults to ' '
+     *
+     * @return string
      */
-    protected function getScopeSeparator()
+    protected function getScopeSeparator(): string
     {
         return ' ';
     }
@@ -98,21 +100,25 @@ class Aircall extends AbstractProvider
     protected function checkResponse(ResponseInterface $response, $data)
     {
         // At the time of initial implementation the possible error payloads returned
-        // by Salesloft were not very well documented. This method will need some
+        // by Aircall were not very well documented. This method will need some
         // improvement as the API continues to mature.
         if ($response->getStatusCode() != 200) {
-            throw new IdentityProviderException('Unexpected response code', $response->getStatusCode(), $response);
+            throw new IdentityProviderException(
+                'Unexpected response code',
+                $response->getStatusCode(),
+                $response->getBody()
+            );
         }
     }
 
     /**
      * Generate a user object from a successful user details request.
      *
-     * @param object $response
+     * @param array $response
      * @param AccessToken $token
      * @return AircallResourceOwner
      */
-    protected function createResourceOwner(array $response, AccessToken $token)
+    protected function createResourceOwner(array $response, AccessToken $token): AircallResourceOwner
     {
         return new AircallResourceOwner($response);
     }

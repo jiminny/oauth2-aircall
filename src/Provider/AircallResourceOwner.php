@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Jiminny\OAuth2\Client\Provider;
 
 use League\OAuth2\Client\Provider\ResourceOwnerInterface;
@@ -14,14 +16,14 @@ class AircallResourceOwner implements ResourceOwnerInterface
      *
      * @var array
      */
-    protected $response;
+    protected array $response;
 
     /**
      * Creates new resource owner.
      *
-     * @param array  $response
+     * @param array $response
      */
-    public function __construct(array $response = array())
+    public function __construct(array $response = [])
     {
         $this->response = $response;
     }
@@ -31,7 +33,7 @@ class AircallResourceOwner implements ResourceOwnerInterface
      *
      * @return string|null
      */
-    public function getId()
+    public function getId(): ?string
     {
         return $this->getValueByKey($this->response, 'integration.user.id');
     }
@@ -39,9 +41,9 @@ class AircallResourceOwner implements ResourceOwnerInterface
     /**
      * Get resource owner name
      *
-     * @return string
+     * @return null|string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->getValueByKey($this->response, 'integration.user.name');
     }
@@ -51,17 +53,17 @@ class AircallResourceOwner implements ResourceOwnerInterface
      *
      * @return string|null
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->getValueByKey($this->response, 'integration.user.email');
     }
 
     /**
-     * Return all of the owner details available as an array.
+     * Return all the owner details available as an array.
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->response;
     }
