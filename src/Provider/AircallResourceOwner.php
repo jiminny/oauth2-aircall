@@ -31,9 +31,9 @@ class AircallResourceOwner implements ResourceOwnerInterface
     /**
      * Get resource owner id
      *
-     * @return string|null
+     * @return mixed
      */
-    public function getId(): ?string
+    public function getId()
     {
         return $this->getValueByKey($this->response, 'integration.user.id');
     }
