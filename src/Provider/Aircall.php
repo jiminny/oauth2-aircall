@@ -28,7 +28,7 @@ class Aircall extends AbstractProvider
      */
     public function getBaseAuthorizationUrl(): string
     {
-        return 'https://dashboard-v2.aircall.io/oauth/authorize';
+        return 'https://dashboard.aircall.io/oauth/authorize';
     }
 
     /**
